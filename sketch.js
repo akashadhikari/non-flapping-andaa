@@ -1,9 +1,9 @@
-var bird;
+var anda;
 var pipes=[];
 
 function setup() {
 	createCanvas(1400,600);
-	bird = new Bird();
+	anda = new Anda();
 	pipes.push(new Pipe());
 }
 
@@ -15,7 +15,7 @@ function draw() {
   	pipes[i].show();
   	pipes[i].update();
 
-  	if(pipes[i].hits(bird)) {
+  	if(pipes[i].hits(anda)) {
   		console.log("HIT!");
   	}
 
@@ -24,8 +24,8 @@ function draw() {
   	}
   }
 
-  bird.update();
-  bird.show();
+  anda.update();
+  anda.show();
 
   if(frameCount%38==0) {
   	pipes.push(new Pipe());
@@ -35,21 +35,21 @@ function draw() {
 
 function keyPressed() {
 	if (key==' ') {
-		bird.up();
+		anda.up();
 	}
 }
 
-//BIRD ATTRIBUTES HERE! 
+//anda ATTRIBUTES HERE! 
 
-function Bird() {
-	this.y=height/2; //bird at the center of the window
+function Anda() {
+	this.y=height/2; //anda at the center of the window
 	this.x=25; 
 
 	this.gravity=0.7;
 	this.lift=-17;
 	this.velocity=0;
 
-	this.show = function() { //drawing the bird
+	this.show = function() { //drawing the anda
 		fill(255);
 		ellipse(this.x, this.y, 25, 32);
 	}
@@ -85,9 +85,9 @@ function Pipe() {
 
 	this.highlights=false;
 
-	this.hits=function(bird) {
-		if(bird.y<this.top || bird.y>height-this.bottom) {
-			if(bird.x>this.x && bird.x<this.x+this.w) {
+	this.hits=function(anda) {
+		if(anda.y<this.top || anda.y>height-this.bottom) {
+			if(anda.x>this.x && anda.x<this.x+this.w) {
 				this.highlight=true;
 				return true;
 			}	
